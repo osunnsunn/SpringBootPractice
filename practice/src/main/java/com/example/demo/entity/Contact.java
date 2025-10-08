@@ -44,4 +44,10 @@ public class Contact {
 
     @Column(name = "body", nullable = false)
     private String body;
+    
+    @Column(name = "created_at")
+    private String createdAt;
+    
+    @Column(name = "updated_at")
+    private String updatedAt;
 }
