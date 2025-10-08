@@ -12,7 +12,7 @@ import com.example.demo.service.ContactService;
 
 @Controller
 public class AdminController {
-	
+
 	@Autowired
 	private ContactService contactService;
 
