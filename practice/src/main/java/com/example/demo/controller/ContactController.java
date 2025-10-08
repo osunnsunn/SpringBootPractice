@@ -1,7 +1,5 @@
 package com.example.demo.controller;
 
-import java.util.List;
-
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 
@@ -14,7 +12,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
-import com.example.demo.entity.Contact;
 import com.example.demo.form.ContactForm;
 import com.example.demo.service.ContactService;
 
@@ -77,13 +74,6 @@ public class ContactController {
 		session.invalidate();
 
 		return "completion";
-	}
-
-	@GetMapping("/admin/contacts")
-	public String contactList(Model model) {
-		List<Contact> contactList = contactService.getAllContacts();
-		model.addAttribute("contactList", contactList);
-		return "contactList";
 	}
 
 }
