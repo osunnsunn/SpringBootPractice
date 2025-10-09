@@ -16,12 +16,12 @@
 			<th>更新日時</th>
 		</tr>
 		<tr th:each="contact : ${contactList}">
-			<td><span th:text="${contact.id}"></span></td> <!--お問い合せID-->
-			<td><span th:text="${contact.lastName}"></span></td> <!--姓-->
-			<td><span th:text="${contact.firstName}"></span></td> <!--名-->
-			<td><span th:text="${contact.contactType}"></span></td> <!--お問い合せ種別-->
-			<td><span th:text="${contact.createdAt}"></span></td> <!--作成日時-->
-			<td><span th:text="${contact.updatedAt}"></span></td> <!--更新日時-->
+			<td><a th:href="@{'/admin/contacts/' + ${contact.id}}" th:text="${contact.id}"></a></td>
+			<td><span th:text="${contact.lastName}"></span></td>
+			<td><span th:text="${contact.firstName}"></span></td>
+			<td><span th:text="${contact.contactType}"></span></td>
+			<td><span th:text="${contact.createdAt}"></span></td>
+			<td><span th:text="${contact.updatedAt}"></span></td>
 		</tr>
 	</table>
 </body>
