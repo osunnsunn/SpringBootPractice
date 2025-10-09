@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.example.demo.entity.Contact;
+import com.example.demo.form.ContactEditForm;
 import com.example.demo.form.ContactForm;
 import com.example.demo.repository.ContactRepository;
 
@@ -50,20 +51,40 @@ public class ContactServiceImpl implements ContactService {
 	@Override
 	public void updateContact(Long id, Contact updatedContact) {
 	    Contact contact = contactRepository.findById(id).orElse(null);
-	    if (contact != null) {
-	        contact.setLastName(updatedContact.getLastName());
-	        contact.setFirstName(updatedContact.getFirstName());
-	        contact.setEmail(updatedContact.getEmail());
-	        contact.setPhone(updatedContact.getPhone());
-	        contact.setZipCode(updatedContact.getZipCode());
-	        contact.setAddress(updatedContact.getAddress());
-	        contact.setBuildingName(updatedContact.getBuildingName());
-	        contact.setContactType(updatedContact.getContactType());
-	        contact.setBody(updatedContact.getBody());
+	    if (contact == null) {
+	    	return;
+	    }
+	    contact.setLastName(updatedContact.getLastName());
+	    contact.setFirstName(updatedContact.getFirstName());
+	    contact.setEmail(updatedContact.getEmail());
+	    contact.setPhone(updatedContact.getPhone());
+	    contact.setZipCode(updatedContact.getZipCode());
+	    contact.setAddress(updatedContact.getAddress());
+	    contact.setBuildingName(updatedContact.getBuildingName());
+	    contact.setContactType(updatedContact.getContactType());
+	    contact.setBody(updatedContact.getBody());
 
 	        contactRepository.save(contact);
-	    }
 	}
+	
+	@Override
+    public void updateContact(Long id, ContactEditForm form) {
+        Contact contact = contactRepository.findById(id).orElse(null);
+        if (contact == null) {
+            return;
+        }
+        contact.setLastName(form.getLastName());
+        contact.setFirstName(form.getFirstName());
+        contact.setEmail(form.getEmail());
+        contact.setPhone(form.getPhone());
+        contact.setZipCode(form.getZipCode());
+        contact.setAddress(form.getAddress());
+        contact.setBuildingName(form.getBuildingName());
+        contact.setContactType(form.getContactType());
+        contact.setBody(form.getBody());
+
+        contactRepository.save(contact);
+    }
 
 	@Override
 	public void deleteContact(Long id) {
