@@ -7,21 +7,33 @@ import jakarta.validation.constraints.Size;
 public class ContactEditForm {
 	
 	@NotBlank
-	@Size(max = 60)
+	@Size(max = 255)
 	private String lastName;
 	
 	@NotBlank
     @Size(max = 60)
     private String firstName;
-
+	
 	@NotBlank
 	@Email
+	@Size(max = 255)
 	private String email;
+	
+	@Size(max = 11)
 	private String phone;
+	
+	@Size(max = 8)
     private String zipCode;
+	
+	@Size(max = 255)
     private String address;
+	
+	@Size(max = 255)
     private String buildingName;
+	
+	@Size(max = 50)
     private String contactType;
+	
     private String body;
 	
 	public String getLastName() {
