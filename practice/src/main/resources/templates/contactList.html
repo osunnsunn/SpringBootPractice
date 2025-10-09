@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>お問い合わせの詳細画面</title>
+</head>
+<body>
+	<h1>お問い合わせ一覧画面</h1>
+	<table border="1">
+		<tr>
+			<th>お問い合せID</th>
+			<th>姓</th>
+			<th>名</th>
+			<th>お問い合せ種別</th>
+			<th>作成日時</th>
+			<th>更新日時</th>
+		</tr>
+		<tr th:each="contact : ${contactList}">
+			<td><span th:text="${contact.id}"></span></td> <!--お問い合せID-->
+			<td><span th:text="${contact.lastName}"></span></td> <!--姓-->
+			<td><span th:text="${contact.firstName}"></span></td> <!--名-->
+			<td><span th:text="${contact.contactType}"></span></td> <!--お問い合せ種別-->
+			<td><span th:text="${contact.createdAt}"></span></td> <!--作成日時-->
+			<td><span th:text="${contact.updatedAt}"></span></td> <!--更新日時-->
+		</tr>
+	</table>
+</body>
+</html>
