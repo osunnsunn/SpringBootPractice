@@ -1,10 +1,13 @@
 package com.example.demo.service;
 
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.example.demo.entity.Admin;
+import com.example.demo.form.AdminSigninForm;
 import com.example.demo.form.AdminSignupForm;
 import com.example.demo.repository.AdminRepository;
 
@@ -23,7 +26,22 @@ public class AdminServiceImpl implements AdminService {
 		admin.setFirstName(form.getFirstName());
 		admin.setEmail(form.getEmail());
 		admin.setPassword(passwordEncoder.encode(form.getPassword()));
-
 		adminRepository.save(admin);
+	}
+
+	@Override
+	public Admin login(AdminSigninForm form) {
+		Optional<Admin> adminOpt = adminRepository.findAll()
+				.stream()
+				.filter(a -> a.getEmail().equals(form.getEmail()))
+				.findFirst();
+
+		if (adminOpt.isPresent()) {
+			Admin admin = adminOpt.get();
+			if (passwordEncoder.matches(form.getPassword(), admin.getPassword())) {
+				return admin;
+			}
+		}
+		return null;
 	}
 }
