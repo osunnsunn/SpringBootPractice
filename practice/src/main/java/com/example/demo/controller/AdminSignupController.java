@@ -15,25 +15,25 @@ import com.example.demo.service.AdminService;
 @Controller
 public class AdminSignupController {
 
-    @Autowired
-    private AdminService adminService;
+	@Autowired
+	private AdminService adminService;
 
-    @GetMapping("/admin/signup")
-    public String signupForm(Model model) {
-        model.addAttribute("adminSignupForm", new AdminSignupForm());
-        return "adminSignup";
-    }
+	@GetMapping("/admin/signup")
+	public String signupForm(Model model) {
+		model.addAttribute("adminSignupForm", new AdminSignupForm());
+		return "adminSignup";
+	}
 
-    @PostMapping("/admin/signup")
-    public String registerAdmin(@Validated @ModelAttribute("adminSignupForm") AdminSignupForm form,
-                                BindingResult result,
-                                Model model) {
-        if (result.hasErrors()) {
-            return "adminSignup";
-        }
+	@PostMapping("/admin/signup")
+	public String registerAdmin(@Validated @ModelAttribute("adminSignupForm") AdminSignupForm form,
+			BindingResult result,
+			Model model) {
+		if (result.hasErrors()) {
+			return "adminSignup";
+		}
 
-        adminService.registerAdmin(form);
-        model.addAttribute("message", "管理者登録が完了しました！");
-        return "adminSignup";
-    }
+		adminService.registerAdmin(form);
+		model.addAttribute("message", "管理者登録が完了しました！");
+		return "adminSignup";
+	}
 }
