@@ -6,20 +6,25 @@
 </head>
 <body>
 	<h1>管理者ログイン</h1>
-	<form th:object="${adminSigninForm}" th:action="@{/admin/signin}" method="post">
+	<form th:action="@{/admin/signin}" method="post">
 		<table border="0">
 			<tr>
 				<td>メールアドレス：</td>
-				<td><input type="email" th:field="*{email}" /></td>
+				<td><input type="text" name="username" /></td>
 			</tr>
 			<tr>
 				<td>パスワード：</td>
-				<td><input type="password" th:field="*{password}" /></td>
+				<td><input type="password" name="password" /></td>
 			</tr>
 		</table>
 		<button type="submit">ログイン</button>
 	</form>
-	<p th:text="${message}" style="color:red;"></p>
+	<div th:if="${param.error}">
+		<p style="color:red;">ログインに失敗しました。メールアドレスかパスワードが間違っています。</p>
+	</div>
+	<div th:if="${param.logout}">
+	    <p style="color:green;">ログアウトしました。</p>
+	</div>
 	<p>
 		<a th:href="@{/admin/signup}">新規登録はこちら</a>
 	</p>
